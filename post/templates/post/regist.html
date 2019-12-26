@@ -5,13 +5,13 @@
   <div class="container">
     <div class="row pd20">
       <div class="col-sm tac">
-        <button type="button" class="btn btn-secondary" onclick="move('/regist')">등록</button>
+        <button type="button" class="btn btn-secondary" onclick="move('/regist')">登録</button>
       </div>
       <div class="col-sm tac">
-        <button type="button" class="btn btn-light" onclick="move('/')">리스트</button>
+        <button type="button" class="btn btn-light" onclick="move('/')">リスト</button>
       </div>
       <div class="col-sm tac">
-        <button type="button" class="btn btn-light" onclick="move('/report')">리포트</button>
+        <button type="button" class="btn btn-light" onclick="move('/report')">レポート</button>
       </div>
     </div>
   </div>
@@ -19,18 +19,18 @@
 {% endblock %}
 
 {% block content %}
-  <h2 class="tac">포스트 등록</h2>
+  <h2 class="tac">ポスト登録</h2>
   <form action="javascript:void(0);">
     <div class="form-group">
-      <label>제목</label>
+      <label>タイトル</label>
       {{ form.title }}
     </div>
     <div class="form-group">
-      <label>내용</label>
+      <label>内容</label>
       {{ form.content }}
     </div>
     <div class="tar">
-      <button class="btn btn-dark" onclick="post_save()">저장</button>
+      <button class="btn btn-dark" onclick="post_save()">登録</button>
     </div>
   </form>
 {% endblock %}

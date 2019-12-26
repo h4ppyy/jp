@@ -5,13 +5,13 @@
   <div class="container">
     <div class="row pd20">
       <div class="col-sm tac">
-        <button type="button" class="btn btn-light" onclick="move('/regist')">등록</button>
+        <button type="button" class="btn btn-light" onclick="move('/regist')">登録</button>
       </div>
       <div class="col-sm tac">
-        <button type="button" class="btn btn-secondary" onclick="move('/')">리스트</button>
+        <button type="button" class="btn btn-secondary" onclick="move('/')">リスト</button>
       </div>
       <div class="col-sm tac">
-        <button type="button" class="btn btn-light" onclick="move('/report')">리포트</button>
+        <button type="button" class="btn btn-light" onclick="move('/report')">レポート</button>
       </div>
     </div>
   </div>
@@ -29,19 +29,19 @@
           {{ p.content }}
         </p>
         <div>
-          <span>글번호</span>
+          <span>番号</span>
           <span class="fwb">
             {{ p.id }}
           </span>
         </div>
         <div>
-          <span>모르는 한자</span>
+          <span>知らない漢字</span>
           <span class="fwb">
             {{ p.total_cnt }}
           </span>
         </div>
         <div>
-          <span>등록일시</span>
+          <span>登録日</span>
           <span class="fwb">
             {{ p.regist_date | date:"Y-m-d G:i:s" }}
           </span>

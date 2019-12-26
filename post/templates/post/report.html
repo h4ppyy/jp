@@ -5,13 +5,13 @@
   <div class="container">
     <div class="row pd20">
       <div class="col-sm tac">
-        <button type="button" class="btn btn-light" onclick="move('/regist')">등록</button>
+        <button type="button" class="btn btn-light" onclick="move('/regist')">登録</button>
       </div>
       <div class="col-sm tac">
-        <button type="button" class="btn btn-light" onclick="move('/')">리스트</button>
+        <button type="button" class="btn btn-light" onclick="move('/')">リスト</button>
       </div>
       <div class="col-sm tac">
-        <button type="button" class="btn btn-secondary" onclick="move('/report')">리포트</button>
+        <button type="button" class="btn btn-secondary" onclick="move('/report')">レポート</button>
       </div>
     </div>
   </div>
@@ -29,26 +29,26 @@
           <div class="card-body">
             <p class="card-text">
               <span>
-                Rank
+                ランク
               </span>
               <span class="pwb">
                 {{ r.ranking | stringformat:"i" }}
               </span>
             </p>
             <p class="card-text">
-              <span>히라가나</span>
+              <span>ひらがな</span>
               <span class="fwb">
               {{ r.hiragana }}
               </span>
             </p>
             <p class="card-text">
-              <span>한글</span>
+              <span>意味</span>
               <span class="fwb">
               {{ r.hangul }}
               </span>
             </p>
             <p class="card-text">
-              <span>누적</span>
+              <span>累積</span>
               <span class="fwb">
               {{ r.total_cnt }}
               </span>

@@ -5,6 +5,7 @@ function move(url){
 function post_save(){
   var id_title = $('#id_title').val();
   var id_content = $('#id_content').val();
+  id_content = id_content.replace(/\r?\n/g, '<br/>');
 
   $.post( "/regist", {
      csrfmiddlewaretoken: $('#csrf_token').val(),

@@ -1,0 +1,53 @@
+{% extends 'common/base.html' %}
+
+{% block nav %}
+<nav>
+  <div class="container">
+    <div class="row pd20">
+      <div class="col-sm tac">
+        <button type="button" class="btn btn-light" onclick="move('/regist')">등록</button>
+      </div>
+      <div class="col-sm tac">
+        <button type="button" class="btn btn-secondary" onclick="move('/')">리스트</button>
+      </div>
+      <div class="col-sm tac">
+        <button type="button" class="btn btn-light" onclick="move('/report')">리포트</button>
+      </div>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<h2 class="tac">포스트 상세</h2>
+<form action="javascript:void(0);">
+  <div class="form-group">
+    <label>아이디</label>
+    <div class="view-box">
+      {{ id }}
+    </div>
+  </div>
+  <div class="form-group">
+    <label>제목</label>
+    <div class="view-box">
+      {{ form.title.value }}
+    </div>
+  </div>
+  <div class="form-group">
+    <label>내용</label>
+    <div class="view-box">
+      {{ form.content.value }}
+    </div>
+  </div>
+  <div class="form-group">
+    <label>등록일시</label>
+    <div class="view-box">
+      {{ form.regist_date.value | date:"Y-m-d G:i:s" }}
+    </div>
+  </div>
+  <div class="tar">
+    <button class="btn btn-dark" onclick="post_delete()">삭제</button>
+  </div>
+</form>
+<input hidden type="text" id="post_id" value="{{ id }}">
+{% endblock %}

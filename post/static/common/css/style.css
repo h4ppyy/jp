@@ -1,0 +1,42 @@
+.tal {
+  text-align: left;
+}
+.tac {
+  text-align: center;
+}
+.tar {
+  text-align: right;
+}
+.fwb {
+  font-weight: bold;
+}
+.pd20 {
+  padding: 20px;
+}
+.pt20 {
+  padding-top: 20px;
+}
+.mb10 {
+  margin-bottom: 10px;
+}
+.txt-over {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.report-hanja {
+  font-size: 50px;
+  text-align: center;
+  margin-top: 50px;
+}
+.post-box {
+  cursor: pointer;
+  transition: 0.3s;
+}
+.post-box:hover {
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+.view-box {
+  border: solid 1px #e6e6e6;
+  padding: 10px;
+}

@@ -1,0 +1,52 @@
+{% extends 'common/base.html' %}
+
+{% block nav %}
+<nav>
+  <div class="container">
+    <div class="row pd20">
+      <div class="col-sm tac">
+        <button type="button" class="btn btn-light" onclick="move('/regist')">등록</button>
+      </div>
+      <div class="col-sm tac">
+        <button type="button" class="btn btn-secondary" onclick="move('/')">리스트</button>
+      </div>
+      <div class="col-sm tac">
+        <button type="button" class="btn btn-light" onclick="move('/report')">리포트</button>
+      </div>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+  {% for p in post %}
+    <div class="card mb10 post-box" onclick="move('/post/{{ p.id }}')">
+      <div class="card-body">
+        <h5 class="card-title txt-over">
+          {{ p.title }}
+        </h5>
+        <p class="card-text txt-over">
+          {{ p.content }}
+        </p>
+        <div>
+          <span>글번호</span>
+          <span class="fwb">
+            {{ p.id }}
+          </span>
+        </div>
+        <div>
+          <span>모르는 한자</span>
+          <span class="fwb">
+            {{ p.total_cnt }}
+          </span>
+        </div>
+        <div>
+          <span>등록일시</span>
+          <span class="fwb">
+            {{ p.regist_date | date:"Y-m-d G:i:s" }}
+          </span>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}

@@ -6,12 +6,22 @@
   <link rel="stylesheet" href="/static/common/vendor/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="/static/common/css/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block css %}
+  {% endblock %}
 </head>
 <body>
-  <h1>This is a Heading</h1>
-  <p>This is a paragraph.</p>
+  {% block nav %}
+  {% endblock %}
+  <div class="container pt20">
+    {% block content %}
+    {% endblock %}
+  </div>
 </body>
+<input hidden type="text" id="csrf_token" value="{{ csrf_token }}"/>
 <script src="/static/common/vendor/jquery/jquery.min.js"></script>
 <script src="/static/common/vendor/bootstrap/popper.min.js"></script>
 <script src="/static/common/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/static/common/js/common.js"></script>
+{% block js %}
+{% endblock %}
 </html>

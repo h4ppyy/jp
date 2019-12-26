@@ -42,14 +42,14 @@ def ParsePost(data):
             break
 
         target = data[x:y+1]
-        raw = data[x+1:y+1]
+        raw = data[x+1:y]
 
         try:
             p_raw = raw.split('@')
             hanja = p_raw[0]
             hiragana = p_raw[1]
             hangul = p_raw[2]
-            origin = origin.replace(target, '<mark>{0}</mark>'.format(hanja))
+            origin = origin.replace(target, '<mark data-toggle="tooltip" data-placement="bottom" title="{1} / {2}">{0}</mark>'.format(hanja, hiragana, hangul))
         except BaseException:
             pass
 

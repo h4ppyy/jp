@@ -20,9 +20,9 @@ def list(request):
                     ifnull(total_cnt, 0) as total_cnt
             from post x
             left join (
-            	select post_id, count(*) as total_cnt
-            	from post_info
-            	group by post_id
+                select post_id, count(*) as total_cnt
+                from post_info
+                group by post_id
             ) y
             on x.id = y.post_id
             where x.delete_yn = 'N'
@@ -30,14 +30,19 @@ def list(request):
         '''
         cursor.execute(sql)
         post = dictfetchall(cursor)
+    post_count = len(post)
     context = {}
     context['post'] = post
+    context['post_count'] = post_count
     return render(request, 'post/list.html', context)
 
 
 def post(request, id):
-    p = Post.objects.get(id=id)
-    pf = PostForm(instance=p)
+    try:
+        p = Post.objects.get(id=id)
+        pf = PostForm(instance=p)
+    except BaseException:
+        return redirect('/')
     context = {}
     context['form'] = pf
     context['id'] = id
@@ -48,25 +53,28 @@ def regist(request):
     if request.method == "POST":
         title = request.POST.get('title')
         content = request.POST.get('content')
-        result = scanPost(content)
-        p = Post(
-            title = title,
-            content = content,
-            regist_date = datetime.datetime.now()
-        )
-        p.save()
-        for n in result:
-            hanja = n['hanja']
-            hiragana = n['hiragana']
-            hangul = n['hangul']
-            PostInfo(
-                post_id = p.id,
-                hanja = hanja,
-                hiragana = hiragana,
-                hangul = hangul,
+        try:
+            result = scanPost(content)
+            p = Post(
+                title = title,
+                content = content,
                 regist_date = datetime.datetime.now()
-            ).save()
-        return JsonResponse({'result': 200})
+            )
+            p.save()
+            for n in result:
+                hanja = n['hanja']
+                hiragana = n['hiragana']
+                hangul = n['hangul']
+                PostInfo(
+                    post_id = p.id,
+                    hanja = hanja,
+                    hiragana = hiragana,
+                    hangul = hangul,
+                    regist_date = datetime.datetime.now()
+                ).save()
+            return JsonResponse({'result': 200})
+        except BaseException:
+            return JsonResponse({'result': 500})
     else:
         pf = PostForm()
         context = {}
@@ -78,33 +86,38 @@ def report(request):
     with connection.cursor() as cursor:
         sql = '''
             select 	@rownum := @rownum + 1 AS ranking,
-            		hanja,
-            		hiragana,
-            		hangul,
-            		total_cnt
+                    hanja,
+                    hiragana,
+                    hangul,
+                    total_cnt
             from (
-            	select 	hanja,
-            			hiragana,
-            			hangul,
-            			count(*) as total_cnt
-            	from post_info
-            	group by hanja, hiragana, hangul
+                select 	hanja,
+                        hiragana,
+                        hangul,
+                        count(*) as total_cnt
+                from post_info
+                group by hanja, hiragana, hangul
                 order by total_cnt desc
             ) w
             JOIN (SELECT @rownum := 0) r
         '''
         cursor.execute(sql)
         report = dictfetchall(cursor)
+    report_count = len(report)
     context = {}
     context['report'] = report
+    context['report_count'] = report_count
     return render(request, 'post/report.html', context)
 
 
 def delete(request):
     if request.method == "POST":
         post_id = request.POST.get('post_id')
-        x = Post.objects.get(id=post_id)
-        x.delete_yn = 'Y'
-        x.delete_date = datetime.datetime.now()
-        x.save()
-        return JsonResponse({'result': 200})
+        try:
+            x = Post.objects.get(id=post_id)
+            x.delete_yn = 'Y'
+            x.delete_date = datetime.datetime.now()
+            x.save()
+            return JsonResponse({'result': 200})
+        except BaseException:
+            return JsonResponse({'result': 500})

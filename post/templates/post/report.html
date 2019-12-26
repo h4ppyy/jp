@@ -19,43 +19,49 @@
 {% endblock %}
 
 {% block content %}
-  {% for r in report %}
-    <div class="card mb-3">
-      <div class="row no-gutters">
-        <div class="col-md-4 report-hanja">
-          {{ r.hanja }}
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <p class="card-text">
-              <span>
-                ランク
-              </span>
-              <span class="pwb">
-                {{ r.ranking | stringformat:"i" }}
-              </span>
-            </p>
-            <p class="card-text">
-              <span>ひらがな</span>
-              <span class="fwb">
-              {{ r.hiragana }}
-              </span>
-            </p>
-            <p class="card-text">
-              <span>意味</span>
-              <span class="fwb">
-              {{ r.hangul }}
-              </span>
-            </p>
-            <p class="card-text">
-              <span>累積</span>
-              <span class="fwb">
-              {{ r.total_cnt }}
-              </span>
-            </p>
+  {% if report_count == 0 %}
+    <div class="null-txt">
+      データが存在しません
+    </div>
+  {% else %}
+    {% for r in report %}
+      <div class="card mb-3">
+        <div class="row no-gutters">
+          <div class="col-md-4 report-hanja">
+            {{ r.hanja }}
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <p class="card-text">
+                <span>
+                  ランク
+                </span>
+                <span class="pwb">
+                  {{ r.ranking | stringformat:"i" }}
+                </span>
+              </p>
+              <p class="card-text">
+                <span>ひらがな</span>
+                <span class="fwb">
+                {{ r.hiragana }}
+                </span>
+              </p>
+              <p class="card-text">
+                <span>意味</span>
+                <span class="fwb">
+                {{ r.hangul }}
+                </span>
+              </p>
+              <p class="card-text">
+                <span>累積</span>
+                <span class="fwb">
+                {{ r.total_cnt }}
+                </span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  {% endfor %}
+    {% endfor %}
+  {% endif %}
 {% endblock %}

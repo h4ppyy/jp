@@ -19,34 +19,40 @@
 {% endblock %}
 
 {% block content %}
-  {% for p in post %}
-    <div class="card mb10 post-box" onclick="move('/post/{{ p.id }}')">
-      <div class="card-body">
-        <h5 class="card-title txt-over">
-          {{ p.title }}
-        </h5>
-        <p class="card-text txt-over">
-          {{ p.content }}
-        </p>
-        <div>
-          <span>番号</span>
-          <span class="fwb">
-            {{ p.id }}
-          </span>
-        </div>
-        <div>
-          <span>知らない漢字</span>
-          <span class="fwb">
-            {{ p.total_cnt }}
-          </span>
-        </div>
-        <div>
-          <span>登録日</span>
-          <span class="fwb">
-            {{ p.regist_date | date:"Y-m-d G:i:s" }}
-          </span>
+  {% if post_count == 0 %}
+    <div class="null-txt">
+      データが存在しません
+    </div>
+  {% else %}
+    {% for p in post %}
+      <div class="card mb10 post-box" onclick="move('/post/{{ p.id }}')">
+        <div class="card-body">
+          <h5 class="card-title txt-over">
+            {{ p.title }}
+          </h5>
+          <p class="card-text txt-over">
+            {{ p.content }}
+          </p>
+          <div>
+            <span>番号</span>
+            <span class="fwb">
+              {{ p.id }}
+            </span>
+          </div>
+          <div>
+            <span>知らない漢字</span>
+            <span class="fwb">
+              {{ p.total_cnt }}
+            </span>
+          </div>
+          <div>
+            <span>登録日</span>
+            <span class="fwb">
+              {{ p.regist_date | date:"Y-m-d G:i:s" }}
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-  {% endfor %}
+    {% endfor %}
+  {% endif %}
 {% endblock %}

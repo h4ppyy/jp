@@ -2,9 +2,14 @@ function move(url){
   window.location.href = url;
 }
 
+
 function post_save(){
   var id_title = $('#id_title').val();
   var id_content = $('#id_content').val();
+
+  if(id_title == ''){ $('#id_title').focus(); return false; }
+  if(id_content == ''){ $('#id_content').focus(); return false; }
+
   id_content = id_content.replace(/\r?\n/g, '<br/>');
 
   $.post( "/regist", {
@@ -21,6 +26,7 @@ function post_save(){
   });
 }
 
+
 function post_delete(){
   var post_id = $('#post_id').val();
 
@@ -36,3 +42,8 @@ function post_delete(){
     }
   });
 }
+
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
